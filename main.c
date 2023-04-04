@@ -25,7 +25,6 @@ static inline void leaving();
 
 // global variables
 int start = true;
-pthread_mutex_t cur_state = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t sticks[N];
 Philosopher philosophers[N];
 
@@ -107,11 +106,9 @@ void print_all_statuses()
     }
     printf("\n\t");
 
-    pthread_mutex_lock(&cur_state);
     for (int i = 0; i < N; ++i) {
         print_status(&philosophers[i]);
     }
-    pthread_mutex_unlock(&cur_state);
     printf("\n\n");
 }
 
